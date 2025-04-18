@@ -20,7 +20,7 @@ ui_print "**********************************************************************
 ui_print " "
 
 # Clear the system.prop file
-echo "" > $MODPATH/system.prop
+echo -n > $MODPATH/system.prop
 
 ui_print ">>> DISPLAY TWEAKS <<<"
 ui_print " "
@@ -58,22 +58,22 @@ ui_print "  [PWR ] Off"
 ui_print " "
 
 if [ "$(keyvolume)" == 1 ]; then
-    ui_print "- Disabling system animations"
-    settings put global window_animation_scale 0
-    settings put global transition_animation_scale 0
-    settings put global animator_duration_scale 0
-    ui_print " "
-elif [ "$(keyvolume)" == 2 ]; then
     ui_print "- Setting animation speed to 0.5x"
     settings put global window_animation_scale 0.5
     settings put global transition_animation_scale 0.5
     settings put global animator_duration_scale 0.5
     ui_print " "
-else
+elif [ "$(keyvolume)" == 2 ]; then
     ui_print "- Setting animation speed to 1.0x (Stock)"
     settings put global window_animation_scale 1
     settings put global transition_animation_scale 1
     settings put global animator_duration_scale 1
+    ui_print " "
+else
+    ui_print "- Disabling system animations"
+    settings put global window_animation_scale 0
+    settings put global transition_animation_scale 0
+    settings put global animator_duration_scale 0
     ui_print " "
 fi
 
